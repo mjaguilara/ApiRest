@@ -1,0 +1,177 @@
+{
+	"info": {
+		"_postman_id": "af252eff-db2d-4505-8ce2-08cdff39e50a",
+		"name": "Examen",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "8483937"
+	},
+	"item": [
+		{
+			"name": "Crear usuario",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "password",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombre\":\"Maria Jose\",\r\n    \"email\":\"mjaguilar@gmail.com\",\r\n    \"password\":\"Cote35\",\r\n    \"telefonos\":[\r\n        {\r\n            \"number\":\"6424262\",\r\n            \"city\":\"5\",\r\n            \"countryCode\":\"56\"\r\n        },\r\n        {\r\n            \"number\":\"877723\",\r\n            \"city\":\"5\",\r\n            \"countryCode\":\"56\"\r\n        }\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/usuarios/v1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"usuarios",
+						"v1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Consultar Usuarios",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJyYXVsMkBnbWFpbC5jb20iLCJhdXRob3JpdGllcyI6WyJST0xFX0FETUlOIiwiUk9MRV9VU0VSIl0sImlhdCI6MTcwODIwODUzMSwiZXhwIjoxNzA4MjEwMDMxfQ.YN-nxIbrTedOEi7l1C6xgq_1hx_Mdvn0Kk-DhcQqqgA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/usuarios/v1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"usuarios",
+						"v1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Actualizar Usuario",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJyYXVsMkBnbWFpbC5jb20iLCJhdXRob3JpdGllcyI6WyJST0xFX0FETUlOIiwiUk9MRV9VU0VSIl0sImlhdCI6MTcwODIwODUzMSwiZXhwIjoxNzA4MjEwMDMxfQ.YN-nxIbrTedOEi7l1C6xgq_1hx_Mdvn0Kk-DhcQqqgA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombre\":\"Actualizacion\",\r\n    \"email\":\"mjaguilar@gmail.com\",\r\n    \"password\":\"Cote35\",\r\n    \"active\":true\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/usuarios/v1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"usuarios",
+						"v1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Consultar por Email",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJyYXVsMkBnbWFpbC5jb20iLCJhdXRob3JpdGllcyI6WyJST0xFX0FETUlOIiwiUk9MRV9VU0VSIl0sImlhdCI6MTcwODIwODUzMSwiZXhwIjoxNzA4MjEwMDMxfQ.YN-nxIbrTedOEi7l1C6xgq_1hx_Mdvn0Kk-DhcQqqgA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\":\"mjaguilar@gmail.com\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/usuarios/v1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"usuarios",
+						"v1"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

@@ -8,6 +8,8 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.examen.demo.entity.User;
+import com.examen.demo.exception.Not_FoundException;
+import com.examen.demo.exception.UserException;
 import com.examen.demo.mapper.MapperUser;
 import com.examen.demo.model.UserDto;
 import com.examen.demo.model.UserRequestDto;
@@ -38,14 +40,13 @@ public class UserServiceImpl implements IUserService {
 	@Override
 	public UserResponseDto createUser(UserRequestDto dto) {
 		 String token;
-		try {
 			log.info("Init createUser");
 			if (UserUtils.isUerIsIncomplete(dto)) {
-				return new UserResponseDto(Constantes.REQUIERED);
+				throw new UserException(1,Constantes.REQUIERED);
 			}
 
 			if (!UserUtils.isValidateEmail(dto.getEmail())) {
-				return new UserResponseDto(Constantes.EMAIL_INVALID);
+				throw new UserException(2,Constantes.EMAIL_INVALID);
 			}
 			final List<String> listRoles = new ArrayList<>();
 			    listRoles.add(Constantes.ROL_ADMIN);
@@ -63,10 +64,7 @@ public class UserServiceImpl implements IUserService {
 			} else {
 				return new UserResponseDto(Constantes.EMAIL_EXIST + " "+ dto.getEmail(), null);
 			}
-		} catch (Exception e) {
-			log.info("Error createUser " + e.getMessage());
-		}
-		return null;
+	
 	}
 
 	
@@ -94,10 +92,10 @@ public class UserServiceImpl implements IUserService {
 	
 	@Override
 	public UserResponseDto updateUser(UserDto dto) {
-		try {
+		
 			log.info("Init updateUser");
 			if (UserUtils.isUerIsIncompleteUpdate(dto)) {
-				return new UserResponseDto(Constantes.REQUIERED);
+				throw new UserException(1,Constantes.REQUIERED);
 			}
 
 			User user = userRepository.findByEmail(dto.getEmail());
@@ -110,13 +108,8 @@ public class UserServiceImpl implements IUserService {
 				this.userRepository.save(user);
 				return new UserResponseDto(Constantes.USER_UPDATE + " " + dto.getEmail(), mapper.map(user, UserDto.class));
 			} else {
-				return new UserResponseDto(Constantes.USER_NOT_EXIST+ " "+ dto.getEmail());
+				throw new Not_FoundException(3,Constantes.USER_NOT_EXIST);
 			}
-
-		} catch (Exception e) {
-			log.info("Error updateUser " + e.getMessage());
-		}
-		return null;
 	}
 
 	@Override

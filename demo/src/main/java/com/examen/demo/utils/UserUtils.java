@@ -40,8 +40,8 @@ public class UserUtils {
 	}
 	
 	public static boolean isUerIsIncomplete(UserRequestDto dto) {
-		return dto == null || dto.getEmail() == null || dto.getEmail().isBlank()
-				|| dto.getNombre() == null || dto.getNombre().isBlank()
+		return dto == null || dto.getEmail() == null || dto.getEmail().isBlank() || dto.getEmail().equals("") 
+				|| dto.getNombre() == null || dto.getNombre().isBlank() || dto.getNombre().equals("")
 				|| dto.getPassword() == null || dto.getPassword().isBlank();
 	}
 	

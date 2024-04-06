@@ -2,6 +2,8 @@ package com.examen.demo.security;
 
 import java.util.Date;
 import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -24,13 +26,16 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 	
 	private String secretKey = "mySecretKey";
+	
+	@Autowired
+    private JWTAuthorizationFilter exceptionHandlingFilter;
 
 		
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.httpBasic()
     		.and()
-			.addFilterAfter(new JWTAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class)
+			.addFilterBefore(exceptionHandlingFilter, UsernamePasswordAuthenticationFilter.class)
 			.authorizeRequests()
 			.antMatchers(HttpMethod.GET, "/usuarios").permitAll()
 			.anyRequest().authenticated();
@@ -59,7 +64,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 				.setSubject(username)
 				.setClaims(claims)
 				.setIssuedAt(new Date(System.currentTimeMillis()))
-				.setExpiration(new Date(System.currentTimeMillis() + 1500000))
+				.setExpiration(new Date(System.currentTimeMillis() + 1000000))
 				.signWith(SignatureAlgorithm.HS256,
 						secretKey.getBytes()).compact();
 

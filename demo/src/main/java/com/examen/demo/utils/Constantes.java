@@ -11,6 +11,10 @@ public class Constantes {
 	 public static final String USER_INFO = "Información usuario";
 	 public static final String ROL_ADMIN = "ROLE_ADMIN";
 	 public static final String ROL_USER = "ROLE_USER";
-	
+	 public static final String NO_AUTHORIZATE = "No autorizado";
+	 public static final String AUTHENTICATION_FAILURE = "Authentication Failure";
+	 public static final String SIGNATURE_NO_VALID = "JWT Signature not valid";
+	 public static final String TOKEN_EXPIRED = "JWT Token already expired";
+	 public static final String TOKEN_NO_VALID = "Token no valido";
 
 }

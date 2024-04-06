@@ -22,6 +22,7 @@ import com.examen.demo.security.SpringSecurityConfig;
 import com.examen.demo.service.IUserService;
 
 
+
 @RestController
 @RequestMapping("/usuarios")
 @CrossOrigin
